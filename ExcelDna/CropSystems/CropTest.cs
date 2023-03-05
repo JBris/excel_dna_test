@@ -4,6 +4,10 @@ using System.Reflection;
 using ExcelDna.Integration;
 using Microsoft.Data.Analysis;
 
+
+/// <summary>
+/// Simple test class to see if dataframes can interact with Excel.
+/// </summary>
 public static class CropTest
 {
 
