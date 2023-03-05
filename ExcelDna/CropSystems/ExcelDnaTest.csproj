@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ExcelDna.Addin" Version="1.7.0-rc1"/>
+		<PackageReference Include="GenericParser" Version="1.1.6" />
+		<PackageReference Include="Microsoft.Data.Analysis" Version="0.20.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="data\crop_data.csv" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="data\crop_data.csv" />
+	</ItemGroup>
+
+	<Target Name="PackedReferences" AfterTargets="AfterBuild" BeforeTargets="ExcelDnaBuild">
+		<ItemGroup>
+			<References Include="$(OutDir)*.dll" Exclude="$(OutDir)$(TargetFileName)"/>
+		</ItemGroup>
+
+		<PropertyGroup>
+			<ExcelAddInInclude>@(References)</ExcelAddInInclude>
+		</PropertyGroup>
+	</Target>
+
+</Project>
